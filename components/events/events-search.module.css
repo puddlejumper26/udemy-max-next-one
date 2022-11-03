@@ -2,7 +2,7 @@
     margin: 2rem auto;
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
     padding: 1rem;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 6px;
     width: 90%;
     max-width: 40rem;
@@ -33,7 +33,7 @@
 
 .control select {
     font: inherit;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 6px;
     width: 70%;
     padding: 0.25rem;
