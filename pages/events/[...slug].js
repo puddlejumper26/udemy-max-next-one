@@ -3,11 +3,15 @@ import { Fragment } from "react";
 
 import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
+// import { getFilteredEvents } from "../../utils/eventHandler";
 import { getFilteredEvents } from "../../dummy-data";
 import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/ui/error-alert";
+import { getPostData } from "../../../demo/lib/posts-util";
 
 function FilterdEventsPage() {
+  // const events = props.events;
+  // console.log("01-FilterdEventsPage-events - " + events);
   const router = useRouter();
   const filterData = router.query.slug;
   if (!filterData) {
@@ -19,8 +23,6 @@ function FilterdEventsPage() {
   // transfer string to number
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
-  console.log("numYear - ", numYear);
-  console.log("numMonth -", numMonth);
   if (
     isNaN(numYear) ||
     isNaN(numMonth) ||
@@ -41,11 +43,14 @@ function FilterdEventsPage() {
     );
   }
 
+  // const filteredEvents = getFilteredEvents(events, {
+  //   year: numYear,
+  //   month: numMonth,
+  // });
   const filteredEvents = getFilteredEvents({
     year: numYear,
     month: numMonth,
   });
-  console.log("filteredEvents -", filteredEvents);
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
@@ -69,3 +74,41 @@ function FilterdEventsPage() {
   );
 }
 export default FilterdEventsPage;
+
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     "https://nextjs-practice-max-02-default-rtdb.firebaseio.com/events.json"
+//   );
+//   console.log("01-FilterdEventsPage-getStaticProps-index - ", res);
+//   const data = await res.json();
+//   const transformedEvents = [];
+//   for (const key in data) {
+//     transformedEvents.push({
+//       id: key,
+//       date: data[key].date,
+//       description: data[key].description,
+//       image: data[key].image,
+//       location: data[key].location,
+//       title: data[key].title,
+//       isFeatured: data[key].isFeatured,
+//     });
+//   }
+
+//   console.log(
+//     "01-FilterdEventsPage-getStaticProps-transformedEvents - ",
+//     transformedEvents
+//   );
+
+//   return {
+//     props: {
+//       events: transformedEvents,
+//     },
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const events = await getAllEvents();
+
+//   const ids = data.
+//   const pathsWithParams =
+// }
